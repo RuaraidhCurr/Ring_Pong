@@ -40,11 +40,9 @@ A point is gained when the opposite player fails to press their button when the 
 
 ### Link to original project
 
-
 ### Links to hardware used
 
-
-## Examples of changes to code
+## Examples of adapted or changed to code
 
 ### Buzzer melody's code
 
