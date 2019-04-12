@@ -26,12 +26,11 @@ A point is gained when the opposite player fails to press their button when the 
 
 1. Larger led ring.
 2. IR sensors instead of buttons.
-3. Adjustable game speed (the speed that the blue led goes at between the two players green LED's).
-4. Point counter.
-5. Adjustable max score.
-6. Buzzing noises indicating a win and points gained.
-7. LED light show on start-up and when someone wins.
-8. Creating a nice portable case for the came.
+3. Point counter.
+4. Adjustable max score.
+5. Buzzing noises indicating a win and points gained.
+6. LED light show on start-up and when someone wins.
+7. Creating a nice portable case for the came.
 
 ### Deliverables
 
