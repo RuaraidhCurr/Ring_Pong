@@ -40,7 +40,37 @@ A point is gained when the opposite player fails to press their button when the 
 
 ### Link to original project
 
+https://www.youtube.com/watch?v=_JxduTo8mgg
+
 ### Links to hardware used
+
+#### Original Project Hardware:
+**Neopixel Ring 60**<br/>
+Cost: £15.00 https://www.ebay.co.uk/itm/8-12-16-24-60-Bit-LED-RGB-5050-WS2812B-WS2812-Ring-Arduino-Raspberry-Pi-NeoPixel/173069314025?hash=item284bbc27e9:m:mNKMAt0PkpxN9KKlkxOpeww:rk:1:pf:0<br/>
+**Arduino UNO R3**<br/>
+Cost: £5.59 https://www.ebay.co.uk/itm/Arduino-UNO-R3-Rev3-ATMEGA328P-16U2-Compatible-Development-Board-Free-USB-Cable/302754099732?epid=28020006064&hash=item467d8cf214:g:VHMAAOSwTQtaTdvQ:rk:14:pf:0<br/>
+**Capacitor 100nF**<br/>
+Cost: £0.44 https://uk.farnell.com/kemet/c320c104k5r5ta/cap-0-1-f-50v-10-x7r/dp/1457655?CMP=GRHB-OCTOPART<br/>
+**Capacitor 1000μF**<br/>
+Cost: £0.67 https://uk.farnell.com/panasonic-electronic-components/eca1em102/cap-1000-f-25v-20/dp/1848503?CMP=GRHB-OCTOPART<br/>
+**Jumper Cables**<br/>
+Cost: £2.20 https://www.ebay.co.uk/itm/40pcs-Dupont-Cables-MALE-TO-FEMALE-Jumper-GPIO-Breadboard-Wire-Ribbon-Pi-Arduino/262202347968?epid=15008856895&hash=item3d0c7a51c0:g:fD4AAOSwAJFZ4fAe:rk:3:pf:1&frcectupt=true<br/>
+Sub Total: £23.90<br/>
+#### Additional Hardware:
+**Push Button Switch**<br/>
+Cost: £2.73 https://www.ebay.co.uk/itm/Tactile-Push-Button-Switch-Momentary-Tact-Cap-12x12x7-3mm-Kit-Arduino-U1Q5<br/>
+**Bluetooth Modules**<br/>
+Cost: 2 x £3.79 (£7.58) https://www.ebay.co.uk/itm/HC-05-Wireless-Bluetooth-Serial-6-Pin-Master-Slave-Module-Arduino-ARM-Pi-PIC-NN/273379842405?epid=15009566424&hash=item3fa6b55965:g:pvcAAOSwfk9bXtZe:rk:3:pf:1&frcectupt=true<br/>
+**Display Modules**<br/>
+Cost: 2 x £1.33 (£2.66) https://www.ebay.co.uk/itm/MAX7219-8x8-LED-Dot-Matrix-Modules-Dot-Matrix-Modules-for-Arduino-Raspberry-Pi/291991910235?hash=item43fc12f75b:m:m6BlJWhnS4uLC2tghbOmEqw:rk:40:pf:0<br/>
+**5mm LED**<br/>
+Cost: £0.99 https://www.ebay.co.uk/itm/Ultra-Bright-Water-Clear-5mm-LED-Bulb-3V-All-Colours-Light-Emitting-Diode/251559482881?hash=item3a921d1601:g:D9gAAOxyhXRTPCQQ:rk:10:pf:0&var=550462657933<br/>
+**Potentiometer**<br/>
+Cost: £0.99 https://www.ebay.co.uk/itm/1K-1M-ohm-Lin-Linear-Log-Logarithmic-Mono-Stereo-Pot-Potentiometer-Or-Knobs/170703080727?hash=item27beb24d17:m:m8lVZ4hvJCHBNbD1RCYU0PQ:rk:2:pf:1&frcectupt=true<br/>
+**Rocker Switch**<br/>
+Cost: £0.99 https://www.ebay.co.uk/itm/On-Off-Round-Rectangle-Rocker-Switch-Waterproof-Cover-Car-Dash-Boat-SPST-12V/261349269695?hash=item3cd9a160bf:m:mSGWmJYq-haVfJ31ZszXcsw:rk:2:pf:1&frcectupt=true<br/>
+**Sub Total**: £15.94<br/><br/>
+**Grand Total**: £39.84
 
 ## Examples of adapted or changed to code
 
@@ -159,3 +189,103 @@ A point is gained when the opposite player fails to press their button when the 
     #define NOTE_A5  880
     #define NOTE_B5  988
     #define NOTE_G6  1568
+
+### Light Show code
+
+```
+void startLightShow() {
+
+  for (int i = 0; i < num_LED; i++) {
+    ring.setPixelColor(i, random(255), random(255), random(255));
+    delay(200);
+    ring.show();
+  }
+  ring.clear();
+
+  for (int i = 0; i < num_LED1; i++) {
+    ring1.setPixelColor(i, random(255), random(255), random(255));
+    delay(200);
+    ring1.show();
+  }
+  ring1.clear();
+
+  for (int i = 0; i < 8; i++) {
+    for (int k = 0; k < 5; k++) {
+      for (int i = 0; i < num_LED; i += 2) {
+        ring.setPixelColor(i, random(255), random(255), random(255));
+      }
+      ring.show();
+      //delay(10);
+      ring.clear();
+
+      for (int i = 0; i < num_LED1; i += 2) {
+        ring1.setPixelColor(i, random(255), random(255), random(255));
+      }
+      ring1.show();
+      //delay(10);
+      ring1.clear();
+
+      for (int i = 1; i < num_LED; i += 2) {
+        ring.setPixelColor(i, random(255), random(255), random(255));
+      }
+      ring.show();
+      //delay(10);
+      ring.clear();
+
+      //neopixel1
+      for (int i = 1; i < num_LED1; i += 2) {
+        ring1.setPixelColor(i, random(255), random(255), random(255));
+      }
+      ring1.show();
+      //delay(10);
+      ring1.clear();
+    }
+  }
+  show_none();
+  show_n();
+}
+```
+
+### Ultra-sonic sensors code
+
+```
+int player0_sensor() {
+
+  //Pulse for player 0 sensor
+  digitalWrite(player0_trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(player0_trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(player0_trigPin, LOW);
+
+
+  pinMode(player0_echoPin, INPUT);
+  duration = pulseIn(player0_echoPin, HIGH);
+
+  // Convert the time into a distance
+  cm = (duration / 2) / 29.1;
+
+  return cm;
+}
+
+
+int player1_sensor() {
+  
+  //Pulse for player 1 sensor
+  digitalWrite(player1_trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(player1_trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(player1_trigPin, LOW);
+
+
+  pinMode(player1_echoPin, INPUT);
+  duration = pulseIn(player1_echoPin, HIGH);
+
+  // Convert the time into a distance
+  cm = (duration / 2) / 29.1;
+
+  return cm;
+}
+
+```
